@@ -1,35 +1,53 @@
-# Example PR Description
-Update the template and include sections where applicable.
+### 📦 Pull Request Template
 
-### Summary
-<!-- Explain what this PR does in a few sentences -->
-This PR adds the payment flow to the checkout page using Stripe. Users can now enter card details and complete a purchase.
+**Summary**  
+_A brief explanation of what this PR introduces or changes._
 
-### Why is this change necessary?
-<!-- State the purpose or problem this PR addresses -->
-We need a working payment flow to support subscriptions and monetization.
+> Example:  
+> Adds payment flow to the checkout page using Stripe, allowing users to complete purchases via credit card.
 
-### What was done?
-<!-- Bullet point list of major changes made -->
-- Integrated Stripe Elements
-- Created `/payment` API endpoint
-- Handled payment success/failure flows
-- Updated frontend UI with payment form
+---
 
-### How to test?
-<!-- Step-by-step instructions for QA or self-test -->
+**Why is this change necessary?**  
+_Explain the motivation, problem, or requirement driving this change._
+
+> Example:  
+> To enable paid subscriptions and support monetization efforts.
+
+---
+
+**What was done?**  
+_List the key changes introduced in this PR._
+
+- Integrated Stripe Elements on the frontend
+- Added `/payment` API endpoint to handle transactions
+- Implemented payment success and error handling
+- Updated the UI with a card input form on `/checkout`
+
+---
+
+**How to test it?**  
+_Provide clear, step-by-step testing or QA instructions._
+
 1. Checkout this branch
-2. Navigate to `/checkout`
+2. Go to `/checkout`
 3. Enter test card: `4242 4242 4242 4242`
-4. Confirm success message and redirect to `/dashboard`
+4. Submit payment and verify success message
+5. Confirm redirection to `/dashboard`
 
-### Related issues
-<!-- Link any related issues or PRs -->
-Closes #42  
-Related to #39
-Verified in `staging` #46
-Hotfix sync with `main` #51
+---
 
-### Screenshots
-<!-- Include UI screenshots, diagrams, or GIFs if applicable -->
-Include before/after UI screenshots or GIFs if the PR changes the frontend.
+**Related issues / PRs**  
+_Reference any associated tickets, PRs, or relevant history._
+
+- Closes #42  
+- Related to #39  
+- Verified in `staging` (#46)  
+- Hotfix synced from `main` (#51)
+
+---
+
+**Screenshots / Visuals**  
+_Add screenshots, screen recordings, or diagrams if applicable (especially for UI changes)._
+
+> _(Insert visuals here if any UI updates were made)_
