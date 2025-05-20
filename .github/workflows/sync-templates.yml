@@ -1,0 +1,54 @@
+name: Sync Templates to All Private Repos
+
+on:
+    workflow_dispatch:
+
+jobs:
+    sync-templates:
+        runs-on: ubuntu-latest
+        env:
+            GH_TOKEN: ${{ secrets.GH_PAT }}
+            GH_USER: embedglobal
+
+        steps:
+            - name: Checkout org-templates
+              uses: actions/checkout@v3
+
+            - name: Install jq
+              run: sudo apt-get install -y jq
+
+            - name: Fetch all private repos and sync
+              run: |
+                  echo "Fetching private repos for $GH_USER..."
+
+                  # Fetch all private repos (owned by user/org)
+                  curl -s -H "Authorization: Bearer $GH_TOKEN" \
+                       -H "Accept: application/vnd.github+json" \
+                       "https://api.github.com/orgs/$GH_USER/repos?per_page=100&type=private" \
+                  | jq -r '.[].full_name' > repos.txt
+
+                  echo "Found repos:"
+                  cat repos.txt
+
+                  # Loop through repos and sync templates
+                  while IFS= read -r REPO; do
+                    echo "Syncing to $REPO..."
+
+                    git clone https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git repo-dir
+                    cd repo-dir
+
+                    mkdir -p .github/ISSUE_TEMPLATE
+                    rm -rf .github/ISSUE_TEMPLATE/*
+                    cp -r ../.github/ISSUE_TEMPLATE/* .github/ISSUE_TEMPLATE/
+                    cp ../.github/PULL_REQUEST_TEMPLATE.md .github/
+
+                    git config user.name "GitHub Actions"
+                    git config user.email "actions@github.com"
+
+                    git add .github
+                    git commit -m "chore: sync issue and PR templates" || echo "No changes to commit"
+                    git push origin HEAD
+
+                    cd ..
+                    rm -rf repo-dir
+                  done < repos.txt
