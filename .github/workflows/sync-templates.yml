@@ -40,7 +40,7 @@ jobs:
                     mkdir -p .github/ISSUE_TEMPLATE
                     rm -rf .github/ISSUE_TEMPLATE/*
                     cp -r ../ISSUE_TEMPLATE/* .github/ISSUE_TEMPLATE/
-                    cp ../PULL_REQUEST_TEMPLATE.md .github/
+                    cp -r ../PULL_REQUEST_TEMPLATE/* .github/PULL_REQUEST_TEMPLATE/
 
                     git config user.name "GitHub Actions"
                     git config user.email "actions@github.com"
