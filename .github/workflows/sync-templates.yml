@@ -36,9 +36,13 @@ jobs:
 
                     git clone https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git repo-dir
                     cd repo-dir
-
+                    
                     mkdir -p .github/ISSUE_TEMPLATE
                     rm -rf .github/ISSUE_TEMPLATE/*
+                    
+                    mkdir -p .github/PULL_REQUEST_TEMPLATE
+                    rm -rf .github/PULL_REQUEST_TEMPLATE/*
+
                     cp -r ../ISSUE_TEMPLATE/* .github/ISSUE_TEMPLATE/
                     cp -r ../PULL_REQUEST_TEMPLATE/* .github/PULL_REQUEST_TEMPLATE/
 
