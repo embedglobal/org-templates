@@ -35,7 +35,7 @@ jobs:
                     REPO_NAME=$(basename "$REPO")
 
                     # Skip excluded repos
-                    if [[ "$REPO_NAME" == ".github-private" || "$REPO_NAME" == "bca" || "$REPO_NAME" == "take-home" ]]; then
+                    if [[ "$REPO_NAME" == ".github-private" ]]; then
                     echo "Skipping $REPO_NAME..."
                     continue
                     fi  
